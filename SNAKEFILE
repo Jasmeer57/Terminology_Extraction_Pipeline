@@ -1,0 +1,20 @@
+# Snakefile
+
+# Dynamic user-supplied config from command-line
+email = config["email"]
+search_term = config["search_term"]
+
+# Pass variables to the workflow
+config["output_dir"] = "results/"  # Default output path
+config["huggingface_models"] = [
+    "dmis-lab/biobert-base-cased-v1.1",
+    "allenai/scibert_scivocab_uncased"
+]
+
+# Include rule definitions
+include: "rules/all.smk"
+include: "rules/fetch_pubmed.smk"
+include: "rules/extract_terms.smk"
+include: "rules/entity_linking.smk"
+include: "rules/embeddings.smk"
+include: "rules/clustering.smk"

@@ -1,0 +1,11 @@
+{
+    "output_dir": "output",
+    "huggingface_models": {
+        "BioBERT": "dmis-lab/biobert-base-cased-v1.2",
+        "PubMedBERT": "microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext",
+        "SciBERT": "allenai/scibert_scivocab_cased",
+        "BioClinicalBERT": "emilyalsentzer/Bio_ClinicalBERT",
+        "SapBERT": "cambridgeltl/sapbert-from-pubmed",
+        "BioLinkBERT": "microsoft/BiomedNLP-LinkBERT-base-4096"
+    }
+}

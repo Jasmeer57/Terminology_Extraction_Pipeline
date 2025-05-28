@@ -1,0 +1,9 @@
+# config.yaml
+
+# Default output directory
+output_dir: "results/"
+
+# Default list of HuggingFace models for embedding comparison
+huggingface_models:
+  - dmis-lab/biobert-base-cased-v1.1
+  - allenai/scibert_scivocab_uncased

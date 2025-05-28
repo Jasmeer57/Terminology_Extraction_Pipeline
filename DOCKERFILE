@@ -1,0 +1,21 @@
+# Dockerfile
+
+FROM continuumio/miniconda3
+
+# Set working directory
+WORKDIR /app
+
+# Copy environment and pipeline files
+COPY environment.yml ./
+COPY . /app
+
+# Install dependencies
+RUN conda env create -f environment.yml && \
+    conda clean -a && \
+    echo "conda activate pubmed-env" >> ~/.bashrc
+
+# Set default environment
+SHELL ["conda", "run", "-n", "pubmed-env", "/bin/bash", "-c"]
+
+# Set default command
+CMD ["snakemake", "--help"]
