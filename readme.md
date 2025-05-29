@@ -32,19 +32,106 @@ The **Terminology Extraction Pipeline Tool** is a comprehensive, user-friendly a
 
 * ⚙️ **Customizable Configuration**
   Configure parameters like search term, output directory, and model choices through a `config.json` file.
+  
+* 🛠️ **Snakemake Workflow**
+  Reproducible, modular, and scalable pipeline with dynamic input via command line.
 
 ---
 
 ## 🚀 Getting Started
 
-### 1. Clone the Repository
+### Download Guide
+#### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/your-username/pubmed-pipeline-tool.git
 cd pubmed-pipeline-tool
 ```
 
-### 2. Install Python Dependencies
+### 🔧 Option 1: Local Setup (with Conda)
+
+```bash
+conda env create -f environment.yml
+conda activate pubmed-env
+```
+
+Run the pipeline:
+
+```bash
+snakemake --cores 4 --config email="your@email.com" search_term="cancer biomarkers"
+```
+
+### 🐳 Option 2: Docker Setup
+
+```bash
+docker-compose up --build
+```
+
+---
+
+## 🗂️ Project Structure
+
+```
+terminology-pipeline/
+├── Snakefile
+├── config.yaml
+├── rules/
+│   ├── fetch.smk
+│   ├── extract.smk
+│   ├── link.smk
+│   ├── embed.smk
+│   └── cluster.smk
+├── scripts/
+│   └── *.py
+├── environment.yml
+├── Dockerfile
+├── docker-compose.yml
+└── results/
+```
+
+---
+
+## ⚙️ Configuration
+
+While `email` and `search_term` are provided via the CLI, defaults and model settings live in `config.yaml`:
+
+```yaml
+output_dir: "results/"
+huggingface_models:
+  - dmis-lab/biobert-base-cased-v1.1
+  - allenai/scibert_scivocab_uncased
+```
+
+---
+
+## 📄 Output Files
+
+All outputs are stored in the `results/` directory:
+
+* `abstracts.json` – Raw PubMed abstracts
+* `extracted_terms.json` – Biomedical terms extracted
+* `linked_entities.json` – Ontology mappings via OLS
+* `embeddings_comparison.csv` – Embedding similarity scores
+* `clusters.json` – Grouped terms from DBSCAN
+
+---
+
+## 📦 Dependencies
+
+Dependencies are handled via Conda. Defined in `environment.yml`:
+
+```yaml
+- biopython
+- pandas
+- tqdm
+- scikit-learn
+- requests
+- snakemake
+- sentence-transformers (via pip)
+```
+
+
+### Option 3. Install Python Dependencies
 
 ```bash
 pip install biopython pandas tqdm transformers sentence-transformers scikit-learn requests tkinter
@@ -67,39 +154,8 @@ Edit the `config.json` file to set your email, search term, output directory, an
   ]
 }
 ```
-
----
-
-## 🐳 Docker Deployment
-
-### Using Docker Compose (Recommended)
-
-```bash
-docker-compose up --build
-```
-
-### Using Docker Only
-
-```bash
-docker build -t pubmed-pipeline .
-docker run -p 8501:8501 pubmed-pipeline
-```
-
 The GUI will be accessible at `http://localhost:8501`.
 
----
-
-## 📂 Output
-
-The tool generates outputs in the specified directory, including:
-
-* `abstracts.json` — Raw PubMed abstracts.
-* `extracted_terms.json` — Extracted biomedical terms.
-* `linked_entities.json` — Terms linked to ontology concepts via OLS API.
-* `embeddings_comparison.csv` — Similarity and comparison scores across multiple HuggingFace models.
-* `clusters.json` — DBSCAN-generated clusters of related terms.
-
----
 
 ## 🧪 Example Use Case
 
@@ -109,16 +165,6 @@ The tool generates outputs in the specified directory, including:
 4. Click **Run** and wait for the processing to complete.
 5. Explore and utilize the structured output data for research, machine learning, or visualization tasks.
 
----
-
-## 🛠️ Development
-
-To run the tool locally without Docker:
-
-```bash
-pip install -r requirements.txt
-streamlit run app.py
-```
 
 ---
 
