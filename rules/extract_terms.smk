@@ -3,5 +3,7 @@ rule extract_terms:
         "results/abstracts.json"
     output:
         "results/extracted_terms.json"
-    script:
-        "scripts/extract_terms.py"
+    shell:
+        """
+        python scripts/extract_terms.py --input {input} --output {output}
+        """

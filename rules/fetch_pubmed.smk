@@ -1,8 +1,10 @@
-rule fetch_abstracts:
+rule fetch_pubmed:
     output:
         "results/abstracts.json"
     params:
         email=config["email"],
-        search_term=config["search_term"]
-    script:
-        "scripts/fetch_pubmed.py"
+        term=config["search_term"]
+    shell:
+        """
+        python scripts/fetch_pubmed.py --email {params.email} --term "{params.term}" --out {output}
+        """

@@ -3,5 +3,7 @@ rule entity_linking:
         "results/extracted_terms.json"
     output:
         "results/linked_entities.json"
-    script:
-        "scripts/link_entities.py"
+    shell:
+        """
+        python scripts/entity_linking.py --input {input} --output {output}
+        """
