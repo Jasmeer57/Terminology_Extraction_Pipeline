@@ -113,5 +113,23 @@ Open to pull requests and discussions. Feel free to contribute enhancements or r
 MIT License. See [`LICENSE`](LICENSE) for more information.
 
 ---
+## 📬 Contact
+
+For questions or collaboration inquiries, please reach out to:
+
+**\[Author: Jasmeer Singh Kalra]**
+📧 [Email](mailto:jasmeer57@gmail.com)
+🔗 [LinkedIn](https://www.linkedin.com/in/jasmeer-singh/)
+🐙 [GitHub](https://github.com/Jasmeer57)
+
+---
+
+## ⭐ Acknowledgments
+
+* HuggingFace for state-of-the-art biomedical models
+* NCBI and PubMed for access to invaluable research data
+* EBI OLS for ontology lookup services
+
+---
 
 
